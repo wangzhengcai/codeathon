@@ -1,8 +1,15 @@
-var $boxOne = $('.box:nth-child(1)'),
+var $boxOne = $('.box:nth-child(1)')/*,
   $boxTwo = $('.box:nth-child(2)'),
-  $boxThree = $('.box:nth-child(3)');
+  $boxThree = $('.box:nth-child(3)')*/;
 
-var boxOne = new TimelineMax(),
+var boxOne = new TimelineMax();
+boxOne.to($boxOne, 0.6, {
+  opacity: 1,
+  scale: 1,
+  ease: Back.easeOut
+}, 1.2);
+
+/*,
   boxTwo = new TimelineMax(),
   boxThree = new TimelineMax();
 
