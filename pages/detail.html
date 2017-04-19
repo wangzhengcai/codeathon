@@ -7,7 +7,8 @@
     <title>Detail</title>
     <link rel="stylesheet" type="text/css" href="../static/style/css/foundation.min.css">
     <link rel="stylesheet" type="text/css" href="../static/style/css/codeathon.css">
-
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
   </head>
  <body>
 
@@ -116,9 +117,7 @@
      <div class="area-chart">
       <div class="row"> 
         <div class="medium-10 medium-centered columns">
-          <div class="chart">
-            <img src="../static/style/images/chart2.jpg" /> 
-          </div> 
+          <div id="container3" style="width: 700px; height: 300px; margin: 0 auto"></div>
          </div>
        </div>
      </div>
@@ -146,9 +145,7 @@
         <div class="medium-10 medium-centered columns">
           <h2>Strategy breakdown pie with percent</h2> 
 
-         <div class="chart">
-          <img src="../static/style/images/chart01.jpg" /> 
-         </div>
+         <div id="container2" style="width: 700px; height: 200px; margin: 0 auto"></div>
        </div>
      </div>
      </div>
@@ -278,6 +275,167 @@
     </div> 
    </div> 
   </section>
+
+<script language="JavaScript">
+//Area chart
+//3 inputs
+var investYears = 3;
+var investFirstTime = 30000;
+var investFollowing = 200;
+
+//2 var relative to other input
+var rateGood = 0.12;
+var rateWeak = 0.04;
+
+function getYrMn(yrs){
+	yrmn = [];
+	yr = 2017;
+	mn = 4;
+	mns = [[1,'Jan'],[2,'Feb'],[3,'Mar'],[4,'Apr'],[5,'May'],[6,'Jun'],[7,'Jul'],[8,'Aug'],[9,'Sep'],[10,'Oct'],[11,'Nov'],[12,'Dec']];
+	tmp = '';
+	for (i=0;i<=yrs*12;i++){
+		tmp = yr + ' ' + mns[mn-1][1];
+		yrmn.push(tmp);
+		mn = mn + 1;
+		if (mn == 13){
+			mn = 1;
+			yr = yr + 1;
+		}
+	}
+	return yrmn;
+}
+
+function getValue(rate, mn, inFir, inFol){
+	rt = rate / 12;
+	return Math.pow((1+rt), mn) * ( inFir + mn * inFol );
+}
+
+function getForecastArray(rate, yrs, inFir, inFol){
+	val =[];
+	for (i=0;i<=yrs*12;i++){
+		val.push(getValue(rate, i, inFir, inFol));
+
+	}
+	return val;
+}
+
+function makeChart_area() {  
+	var chart = {type: 'area'};
+	var title = {text: 'title'};
+	var xAxis = {categories: getYrMn(investYears)};
+	var yAxis = {
+		title: {text: 'Account Value'},
+		min: investFirstTime,
+		labels: {formatter: function () {return this.value/1000 + 'k';}}
+	};
+	var tooltip = {
+	crosshairs: true,
+	shared: true,
+		pointFormat: '{series.name} | <b>{point.y:.0f}</b><br/>'
+	};
+	var plotOptions = {
+		area: {
+			marker: {
+				enabled: false,
+				symbol: 'circle',
+				radius: 1,
+				states: {hover: {enabled: true}}
+			}
+		}
+	};
+	var credits = {enabled:false};
+	var series= [{
+			name: 'Good Market',
+			data: getForecastArray(rateGood, investYears, investFirstTime, investFollowing)
+		}, {
+			name: 'Week Market',
+			data: getForecastArray(rateWeak, investYears, investFirstTime, investFollowing)
+		}
+	];     
+
+	var json = {};   
+	json.chart = chart; 
+	json.title = title;   
+	json.credits = credits;
+	json.tooltip = tooltip;
+	json.xAxis = xAxis;
+	json.yAxis = yAxis;  
+	json.series = series;
+	json.plotOptions = plotOptions;
+	return json;
+}
+
+$(document).ready($('#container3').highcharts(makeChart_area()));
+
+</script>
+
+<script language="JavaScript">
+//Pie Chart
+//add input here
+var selectedRisk = 5;
+
+var data_key = ['Stocks','Bonds','Short-Term'];
+var data_val = [[0,0,100],[20,50,30],[30,50,20],[40,45,15],[50,40,10],[60,35,5],[70,25,5],[85,15,0],[100,0,0]];
+
+function makeChart(x) {  
+		var chart = {
+			margin : [0,0,0],
+			plotBackgroundColor: null,
+			plotBorderWidth: null,
+			plotShadow: false
+		};
+		var credits = {enabled:false};
+		var title = {
+			flouting : true,
+			text: '',
+			y : 100
+		};   		
+		var tooltip = {
+			formatter: function() {return '<b>'+ this.point.name + ': '  + Highcharts.numberFormat(this.percentage, 2) +'%';}
+		};
+		var plotOptions = {
+			pie: {
+				allowPointSelect: true,
+				cursor: 'pointer',
+				dataLabels: {enabled: false},
+				colors : [Highcharts.getOptions().colors[0],Highcharts.getOptions().colors[2],Highcharts.getOptions().colors[4]],
+				showInLegend: true
+			}
+		};
+		var legend = {
+			layout : 'vertical',
+			align : 'right',
+			useHTML : true,
+			labelFormatter : function(){return '<div style="font-size:18px;line-height:240%">' + this.y + '% | ' + this.name + '</div>';}
+		};
+		var series= [{
+			type: 'pie',
+			name: 'Browser share',
+			innerSize : '75%',
+			data: [
+				[data_key[0], data_val[x][0]],
+				[data_key[1], data_val[x][1]],
+				[data_key[2], data_val[x][2]]
+			]
+		}];
+
+		var json = {};
+		json.chart = chart;
+		json.credits = credits;
+		json.title = title;
+		json.legend = legend;
+		json.tooltip = tooltip;
+		json.series = series;
+		json.plotOptions = plotOptions;
+		
+		return json;
+	}
+
+$(document).ready($('#container2').highcharts(makeChart(selectedRisk)));
+
+
+</script>
+
   <!-- == -->
    <!-- footer-->
   <footer class="footer-area text-center"> 
