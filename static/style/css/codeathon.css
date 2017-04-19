@@ -729,3 +729,71 @@ transition: transform .25s ease-in;
 -webkit-transform: scale3d(1.2, 1.2, 1.2);
 transform: scale3d(1.2, 1.2, 1.2);
 }
+.chart-area{
+	background: #fff;
+}
+.dotted{border-bottom: 1px dotted #ccc;}
+.pie-chart,
+.area-chart,
+.btn-area{
+	padding-bottom: 50px;
+	padding-top: 50px;
+}
+.btn-area .btn-box{
+	width:50%;
+}
+.btn-area .link{
+	display: block;
+}
+.left.btn-box{
+	float: left;
+}
+.right.btn-box{
+	float: left;
+}
+.acd-header{
+	background-color: #006193;
+	color: #fff; 
+	    height: 40px;
+	border-bottom: 1px solid #eee;
+}
+.acd-header .acd-title{
+	float: left;
+	color: #fff;	
+}
+.acd-header .acd-persent{
+	float: right;
+	color: #fff;
+	padding-right: 50px;
+}
+.acd-body-title {
+	border-bottom: 1px dotted #ccc;
+	height: 40px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.acd-body-title .acd-link-title{
+	float: left;
+	color: #666;
+
+}
+.acd-body-title .acd-per-title{
+	float: right;
+	color: #666;
+}
+.acd-body-value{
+	height: 40px;	
+}
+.acd-body-value .acd-link{
+	float: left;
+
+}
+.acd-body-value .acd-per{
+	float: right;
+
+}
+.accodtion-area .is-accordion-submenu-parent>a:after{
+	color: #eee;
+	border-color: #eee transparent transparent;
+}
+
