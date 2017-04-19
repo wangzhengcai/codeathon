@@ -1,13 +1,14 @@
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
-  <head>
+	<head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Goal</title>
     <link rel="stylesheet" type="text/css" href="../static/style/css/foundation.min.css">
     <link rel="stylesheet" type="text/css" href="../static/style/css/codeathon.css">
-
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
   </head>
  <body>
 
@@ -56,9 +57,7 @@
        <ul class="accordion-list"> 
         <li class="safety-net-goal goal" data-analytics-name="SafetyNet"> 
          <div class="goal-flexbox"> 
-          <div class="donut-region-safety-net"> 
-           <img src="../static/style/images/chart01.jpg" /> 
-          </div> 
+		   <div id="container1a" style="width: 230px; height: 230px; margin: 0 auto"></div>
           <div class="goal-content"> 
            <div class="goal-content-wrapper"> 
             <div class="goal-info"> 
@@ -73,9 +72,7 @@
          </div> </li> 
         <li class="retirement-goal goal" data-analytics-name="Retirement"> 
          <div class="goal-flexbox"> 
-          <div class="donut-region-retirement"> 
-           <img src="../static/style/images/chart02.jpg" /> 
-          </div> 
+          <div id="container1b" style="width: 230px; height: 230px; margin: 0 auto"></div>
           <div class="goal-content"> 
            <div class="goal-content-wrapper"> 
             <div class="goal-info"> 
@@ -90,9 +87,7 @@
          </div> </li> 
         <li class="general-investing-goal goal" data-analytics-name="General"> 
          <div class="goal-flexbox"> 
-          <div class="donut-region-general-investing"> 
-           <img src="../static/style/images/chart03.jpg" /> 
-          </div> 
+          <div id="container1c" style="width: 230px; height: 230px; margin: 0 auto"></div>
           <div class="goal-content"> 
            <div class="goal-content-wrapper"> 
             <div class="goal-info"> 
@@ -135,6 +130,81 @@
     </div> 
    </div> 
   </section>
+  
+  
+<script language="JavaScript">
+
+var data_key = ['Stocks','Bonds','Short-Term'];
+var data_val = [[20,50,30],[50,40,10],[70,25,5]];
+
+function makeChart(x) {  
+		var chart = {
+			margin : [0,0,0],
+			plotBackgroundColor: null,
+			plotBorderWidth: null,
+			plotShadow: false
+		};
+		var title = {
+			flouting : true,
+			text: '',
+			y : 100
+		};   		
+		var tooltip = {
+			formatter: function() {return '<b>'+ this.point.name + ': '  + Highcharts.numberFormat(this.percentage, 2) +'%';}
+		};
+		var credits = {
+			enabled:false
+		};
+		var plotOptions = {
+			pie: {
+				allowPointSelect: true,
+				cursor: 'pointer',
+				dataLabels: {
+					enabled: false
+				},
+				colors : [Highcharts.getOptions().colors[0],Highcharts.getOptions().colors[2],Highcharts.getOptions().colors[4]],
+				showInLegend: true
+			}
+		};
+		var legend = {
+			flouting : true,
+			layout : 'vertical',
+			y : -70,
+			//align : 'center',
+			labelFormatter : function(){return this.y + ' | ' + this.name + '%';}
+		};
+		var series= [{
+			type: 'pie',
+			name: 'Browser share',
+			innerSize : '80%',
+			data: [
+				[data_key[0], data_val[x][0]],
+				[data_key[1], data_val[x][1]],
+				[data_key[2], data_val[x][2]]
+			]
+		}];
+
+		var json = {};
+		json.chart = chart;
+		json.title = title;
+		json.legend = legend;
+		json.credits = credits;
+		json.tooltip = tooltip;
+		json.series = series;
+		json.plotOptions = plotOptions;
+		
+		return json;
+	}
+
+
+$(document).ready($('#container1a').highcharts(makeChart(0)));
+$(document).ready($('#container1b').highcharts(makeChart(1)));
+$(document).ready($('#container1c').highcharts(makeChart(2)));
+
+
+
+</script>
+  
   <!-- == -->
    <!-- footer-->
   <footer class="footer-area text-center"> 
