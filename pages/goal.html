@@ -7,8 +7,8 @@
     <title>Goal</title>
     <link rel="stylesheet" type="text/css" href="../static/style/css/foundation.min.css">
     <link rel="stylesheet" type="text/css" href="../static/style/css/codeathon.css">
-	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="../static/js/lib/jquery.js"></script>
+	<script src="../static/js/lib/highcharts.js"></script>
   </head>
  <body>
 
@@ -29,8 +29,10 @@
      <div class="medium-8 medium-centered columns"> 
       <div class="hero-header"> 
        <h2 class="hero-main-header">Welcome OnePiece for Web Sites</h2> 
-       <p class="hero-subheader">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mollis tellus augue. Nulla volutpat semper quam, sit amet cursus lacus. Nam aliquam eros a lectus convallis commodo...</p> 
-       <a href="" class="button">Get plan</a> 
+       <p class="hero-subheader">We've made investing simple and convenient</p> 
+       <p class="hero-subheader">We build and manage the strategies </p> 
+       <p class="hero-subheader">Saving time doesn't have to cost a lot</p>
+       <pclass="hero-subheader">See how easy we've made investing It takes just a few minutes. Answer one questions and we'll suggest an investment strategy for you.</p>
       </div> 
      </div> 
     </div> 
@@ -49,8 +51,8 @@
     <div class="medium-10 medium-centered columns"> 
      <div class="panel-header"> 
       <h4>Our recommendations are based on your age and income</h4> 
-      <p class="age-editor editable"> <span display="">30</span> <span editable=""> <input /> </span> <label>age</label> </p> 
-      <p class="income-editor editable"> <span display="">$10,000</span> <span editable=""> <input money-input="" /> </span> <label>annual income</label> </p> 
+      <p class="age-editor editable"> <span id="age_span" display=""></span> <span editable=""> <input /> </span> <label>age</label> </p>
+      <p class="income-editor editable"> <span id="money_span" display=""></span> <span editable=""> <input money-input="" /> </span> <label>annual income</label> </p> 
      </div> 
      <div class="goals"> 
       <div> 
@@ -62,12 +64,12 @@
            <div class="goal-content-wrapper"> 
             <div class="goal-info"> 
              <h4>Safety Net</h4> 
-             <p>A Safety Net is a conservative portfolio. Using your pre-tax income, we've estimated a <strong>target amount of <span class="target-amount">$3,250</span></strong></p> 
+             <p>A Safety Net is a conservative portfolio using your pre-tax income.</p> 
             </div> 
            </div> 
           </div> 
           <div class="goal-action"> 
-           <a href="detail.html" class="button btn-orange set-up-goal">Detail</a> 
+           <a href="general.html" class="button btn-orange set-up-goal">Detail</a> 
           </div> 
          </div> </li> 
         <li class="retirement-goal goal" data-analytics-name="Retirement"> 
@@ -77,12 +79,12 @@
            <div class="goal-content-wrapper"> 
             <div class="goal-info"> 
              <h4>Retirement</h4> 
-             <p>Based on your age and income we recommend you invest long-term with a <strong>target of <span class="target-amount">$324,559</span></strong> for an <strong>annual retirement income of <span class="recommended-retirement-income">$12,383</span></strong>. This can be a regular investment account, or an IRA account.</p> 
+             <p>Based on your age and income we recommend you invest long-term. This can be a regular investment account, or an IRA account.</p> 
             </div> 
            </div> 
           </div> 
           <div class="goal-action">
-           <a href="detail.html" class="button btn-orange set-up-goal">Detail</a> 
+           <a href="retirement.html" class="button btn-orange set-up-goal">Detail</a> 
           </div> 
          </div> </li> 
         <li class="general-investing-goal goal" data-analytics-name="General"> 
@@ -97,7 +99,7 @@
            </div> 
           </div> 
           <div class="goal-action"> 
-           <a href="detail.html" class="button btn-orange set-up-goal">Detail</a> 
+           <a href="general.html" class="button btn-orange set-up-goal">Detail</a> 
           </div> 
          </div> </li> 
        </ul> 
@@ -134,6 +136,16 @@
   
 <script language="JavaScript">
 
+//update age and money info
+$(document).ready(function (){
+        var age=localStorage.getItem('age');
+        var money=localStorage.getItem('money');
+        $('#age_span').text(age);
+        $('#money_span').text("¥"+money);
+        console.log("age:" + age);
+        console.log("money_span:" + money_span);
+    });
+
 var data_key = ['Stocks','Bonds','Short-Term'];
 var data_val = [[20,50,30],[50,40,10],[70,25,5]];
 
@@ -150,10 +162,7 @@ function makeChart(x) {
 			y : 100
 		};   		
 		var tooltip = {
-			formatter: function() {return '<b>'+ this.point.name + ': '  + Highcharts.numberFormat(this.percentage, 2) +'%';}
-		};
-		var credits = {
-			enabled:false
+			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
 		};
 		var plotOptions = {
 			pie: {
@@ -171,7 +180,7 @@ function makeChart(x) {
 			layout : 'vertical',
 			y : -70,
 			//align : 'center',
-			labelFormatter : function(){return this.y + '% | ' + this.name;}
+			labelFormatter : function(){return this.name + ' | ' + this.y + '%';}
 		};
 		var series= [{
 			type: 'pie',
@@ -188,7 +197,6 @@ function makeChart(x) {
 		json.chart = chart;
 		json.title = title;
 		json.legend = legend;
-		json.credits = credits;
 		json.tooltip = tooltip;
 		json.series = series;
 		json.plotOptions = plotOptions;
@@ -200,8 +208,6 @@ function makeChart(x) {
 $(document).ready($('#container1a').highcharts(makeChart(0)));
 $(document).ready($('#container1b').highcharts(makeChart(1)));
 $(document).ready($('#container1c').highcharts(makeChart(2)));
-
-
 
 </script>
   
