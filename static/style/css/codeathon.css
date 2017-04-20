@@ -1,31 +1,44 @@
+body,
+h1, h2, h3, h4, h5, h6,p{
+font-family:sans-serif;
+font-weight: normal;
+
+}
+a,a:focus, a:hover {
+    color: #006193;
+}
 header{}
 footer{
-	background: #666;
-	height: 30px;
+	background: #f0f0f0;
+	height: 85px;
 	padding-top: 10px;
 	padding-bottom: 20px;
 }
+.footer-logo{
+	float: left;
+    padding-top: 6px;
+}
+.footer-logo img{
+	    width: 145px;
+    height: 41px;
+}
 .marketing-hero {
-background: #006193;
-background-image: url(../images/bg-hero.jpg);
-background-position: center;
+
 overflow: visible;
 position: relative;
-background-size: cover;
 text-align: center;
 }
 .hero-area {
-background-color: transparent;
+/* background-color: transparent;
 background-image: -webkit-gradient(linear,left top,left bottom,from(rgba(255,255,255,0)),to(rgba(0,0,0,.4)));
 background-image: -webkit-linear-gradient(top,rgba(255,255,255,0),rgba(0,0,0,.8));
 background-image: -moz-linear-gradient(top,rgba(255,255,255,0),rgba(0,0,0,.8));
 background-image: -o-linear-gradient(top,rgba(255,255,255,0),rgba(0,0,0,.8));
 background-image: linear-gradient(to bottom,rgba(255,255,255,0),rgba(0,0,0,.8));
-color: #fff;
+ */color: #fff;
 }
 .marketing-hero .hero-main-header {
-color: #fefefe;
-font-size: 2.875rem;
+color: #fff;
 text-align: center
 }
 @media screen and (max-width: 768px) {
@@ -36,11 +49,11 @@ font-weight: 200
 }
 .marketing-topbar {
 background: rgba(0,0,0,0.6);
-font-size: .8125rem;
+background-color: #fff;
 font-weight: bold;
 position: relative;
-padding-top: 8px;
-padding-bottom: 6px; 
+padding-top: 15px;
+padding-bottom: 15px; 
 }
 .marketing-topbar::before,.marketing-topbar::after {
 content: ' ';
@@ -56,46 +69,61 @@ float: left
 float: right
 }
 .marketing-topbar a.back-top{
-color: #f5f5f5;
+color: #006193;
 height: 45px;
 line-height: 45px !important;
 padding-bottom: 0 !important;
 padding-top: 0 !important;
+display: none;
 }
 .logo{
-background-image: url('../images/logo_en_white.png');
+background-image: url('../images/logo.png');
 background-size: contain;
 background-repeat: no-repeat;
 display: inline-block;
-width: 145px;
-height: 40px;
+width: 171px;
+height: 52px;
 }
 .hero-area{
-padding: 15px;
+padding: 50px;
+min-height: 350px;
+background: #244a67;
+background-image: url(../images/bg-hero.jpg);
+background-position: center;
+background-size: cover;
+    -webkit-box-shadow: 0 6px 6px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 6px rgba(0,0,0,0.15);
+
 }
 .hero-header{
 padding-top: 50px;
-padding-bottom: 50px;
-min-height: 300px;
+padding-left: 50px;
+padding-right: 50px;
+padding-bottom: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+
+background-color: rgba(36,74,103,0.5);
 }
 .form-area,
 .goal-area,
 .video-area,
 .risk-area,
 .detail-area,
-.faq-area{
+.faq-area,
+.need-area{
 padding-top: 50px;
 padding-bottom: 50px; 
 }
 .form-area .form-title{
-margin: 0px auto 15px;
+/* margin: 0px auto 15px;
 width: 100%;
 text-transform: uppercase;
 color: #666;
 display: block;
 border-bottom: 1px solid #7ebce1;
 margin-bottom: 50px;
-text-align: left; 
+text-align: left;  */
 }
 .risk-area .process-wrap{
 /* background-color: #006193; */
@@ -108,11 +136,6 @@ margin: 20px 0;
 margin: 0px auto 20px; 
 }
 .form-area h2{
-margin: 0px auto 15px;
-width: 100%;
-text-align: center;
-text-transform: uppercase;
-display: block;
 }
 .form-area .enter-income {
 padding: 0px;
@@ -145,11 +168,9 @@ border-color: currentColor currentColor rgb(153, 153, 153);
 border-image: none;
 }
 .form-area .sentence {
-padding: 0px 36.81px 36.81px;
-color: #006193;
-line-height: 1.9;
-font-size: 2.0em;
-font-weight: 300;
+ color: #333;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
 }
 .form-area input {
 outline: 0px;
@@ -616,20 +637,47 @@ width: 50px;
 .faq-area li .normal svg path {
 fill: rgba(52, 73, 94, 0.2);
 }
-.button-gray-back, 
-.button-orange, 
+
 .button-orange-next {
-background-color: #f26522;
-color: #fff;
-padding: 8px 50px;
-text-align: center;
-font-weight: 500;
-font-size: 1.25em;
-/*text-transform: uppercase;*/
-position: relative;
-display: inline-block;
-vertical-align: middle;
-text-decoration: none!important;
+	background-color: #f26522;
+	color: #fff;
+	padding: 8px 50px;
+	text-align: center;
+	font-weight: 500;
+	font-size: 1.25em;
+	/*text-transform: uppercase;*/
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	text-decoration: none!important;
+	border:1px solid #f26522;
+	border-radius: 3px;
+
+}
+.button-white{
+	background-color: #244a67;
+	color: #fefefe;
+	padding: 8px 50px;
+	text-align: center;
+	font-weight: 500;
+	font-size: 1.25em;
+	/*text-transform: uppercase;*/
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	text-decoration: none!important;
+	border:1px solid #fefefe;
+	border-radius: 3px;
+}
+.button-orange-next:hover,
+.button-orange-next:focus{
+	background-color: #f26522;
+	color: #fff;	
+}
+.button-white:hover,
+.button-white:focus{
+	background-color: #244a67;
+	color: #fff;	
 }
 .goals .btn-orange{
 background-color: #f26522;
@@ -714,10 +762,11 @@ left: 50%;
 top: 50%;
 display: block;
 background-repeat: no-repeat;
-height: 72px;
-width: 72px;
+height: 100px;
+width: 100px;
 margin: -36px 0 0 -36px;
 transition: transform .25s ease-in;
+opacity: 0.6;
 }
 .video-play-icon:active, 
 .video-play-icon:focus, 
@@ -725,6 +774,7 @@ transition: transform .25s ease-in;
 transition: transform .25s ease-in;
 -webkit-transform: scale3d(1.2, 1.2, 1.2);
 transform: scale3d(1.2, 1.2, 1.2);
+opacity: 1;
 }
 .chart-area{
 	background: #fff;
@@ -793,4 +843,73 @@ transform: scale3d(1.2, 1.2, 1.2);
 	color: #eee;
 	border-color: #eee transparent transparent;
 }
+/*need*/
+.need-area [class*=fgo-panel] .flex-1, [class*=sub-panel] .flex-1 {
+    -webkit-box-flex: 1;
+    flex: 1 0 0;
+    -ms-flex: 1 0 0;
+    -webkit-flex: 1 0 0;
+}
+.need-area [class^=fgo-icon] {
+    background-repeat: no-repeat;
+}
+
+.need-area  .contact-us-text {
+/*     -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    align-items: flex-start; */
+    text-align: center;
+
+}
+.need-area .fgo-icon-faq {
+    background-image: url(../images/faq.svg);
+	background-size: 65px 65px;
+    height: 68px;
+    width: 65px;
+	margin: 0 auto;}
+.need-area .fgo-icon-chat-unavailable {
+    background-image: url(../images/wechat.svg);
+    background-size: 80px 70px;
+    width: 80px;
+    height: 70px;
+    margin: 0 auto;
+}
+.need-area .fgo-icon-phone {
+    background-image: url(../images/callcenter.svg);
+    background-size: 78px 77px;
+     height: 77px;
+    width: 90px;
+    margin: 0 auto;
+
+}
+.copyright p{
+	margin-bottom: 0;
+    margin-top: 10px;
+    text-align: center;
+    color: #999;
+    font-size: 14px;
+    line-height: 1.5;
+}
+.copyright p:last-child{
+	margin-top: 0;
+}
+.video-area{
+	background-color: #244a67;
+	color: #fff;
+}
+.video-area h3{
+	color: #fff;
+}
+
+
 
