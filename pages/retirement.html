@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="../static/style/css/psstyle.css">
 	<script src="../static/js/lib/jquery.min.js"></script>
 	<script src="../static/js/lib/highcharts.js"></script>
+	<script src="../static/js/lib/highcharts-more.js"></script>
   </head>
  <body>
 
@@ -345,30 +346,23 @@
 
 <script language="JavaScript">
 //3 inputs
-var investYears ;
-var investFirstTime ;
-var investFollowing ;
+var investYears;
+var investFirstTime;
+var investFollowing;
 var storedRisk;
+var score;
 </script>
 
 
 <script language="JavaScript">
-//cal by inut
-var score = 120;
-var centX = 200;
-var centY = 150;
-var outerR = 100;
-var innerR = 60;
-var val1 = 60;
-var val2 = 80;
-var val3 = 100;
-var lineX1 = centX + (innerR-2)*Math.cos(-Math.PI*(150-score)/150);
-var lineY1 = centY + (innerR-2)*Math.sin(-Math.PI*(150-score)/150);
-var lineX2 = centX + (outerR+2)*Math.cos(-Math.PI*(150-score)/150);
-var lineY2 = centY + (outerR+2)*Math.sin(-Math.PI*(150-score)/150);
-
-function makeChart4() {
-    var title = {
+function makeChart4(xxx) {
+	var centX = 200;
+	var centY = 150;
+	var val1 = 60;
+	var val2 = 80;
+	var val3 = 100;
+	
+	var title = {
         text: score,
         floating: true,
         x:0,
@@ -379,25 +373,118 @@ function makeChart4() {
     };
     var credits = {enabled:false};
     var chart = {
-        backgroundColor: 'white',
-        events: {
-            load: function () {
-                var ren = this.renderer;
-                ren.arc(centX, centY, outerR, innerR, -Math.PI*((150-val3)/150), 0).attr({fill: 'green'}).add();
-                ren.arc(centX, centY, outerR, innerR, -Math.PI*((150-val2)/150), -Math.PI*((150-val3)/150)).attr({fill: 'orange'}).add();
-                ren.arc(centX, centY, outerR, innerR, -Math.PI*((150-val1)/150), -Math.PI*((150-val2)/150)).attr({fill: 'orangered'}).add();
-                ren.arc(centX, centY, outerR, innerR, -Math.PI, -Math.PI*((150-val1)/150)).attr({fill: 'darkred'}).add();
-                ren.label('Off Track', 50, 80).css({fontWeight: 'bold'}).add();
-                ren.label('On Track', 280, 80).css({fontWeight: 'bold'}).add();
-				ren.label('150+', centX+50, centY).add();
-                ren.path(['M', lineX1, lineY1, 'L', lineX2, lineY2]).attr({'stroke-width': 5,stroke: 'red'}).add();
-            }
-        }
+		height: 400,
+		renderTo: "container",
+		plotBackgroundColor: null,
+		plotBackgroundImage: null,
+		plotBorderWidth: 0,
+		plotShadow: false,
+		backgroundColor: "transparent"
     };
+	var pane = {
+      "center": ["50%", "47%"],
+      "size": "79%",
+      "startAngle": -90,
+      "endAngle": 90,
+      "background": {
+        "borderWidth": 0,
+        "backgroundColor": "transparent",
+        "innerRadius": "90%",
+        "outerRadius": "100%",
+        "shape": "arc"
+      }
+    };
+    var yAxis = [{
+      "lineWidth": 0,
+      "min": 0,
+      "max": 150,
+      "minorTickLength": 0,
+      "tickLength": 0,
+      "tickWidth": 0,
+      "labels": {
+        "enabled": false
+      },
+      "title": {
+        "text": score,
+        "useHTML": false,
+        "y": 80
+      },
+      "pane": 0
+    }];
+    var plotOptions = {
+      "series": {
+        "enableMouseTracking": false
+      },
+      "pie": {
+        "dataLabels": {
+          "enabled": true,
+          "distance": 0,
+          "style": {
+            "fontWeight": "bold",
+            "color": "white",
+            "textShadow": "0px 1px 2px black"
+          }
+        },
+        "startAngle": -90,
+        "endAngle": 90,
+        "center": ["50%", "47%"]
+      },
+      gauge: {
+        dataLabels: {
+          enabled: false
+        },
+        pivot: {
+          "radius": 125,
+          "borderWidth": 1,
+          "borderColor": "transparent",
+          "backgroundColor": "white"
+        },
+        dial: {
+          "radius": "97%",
+          "backgroundColor": "white",
+          "borderColor": "white",
+          "baseWidth": 140,
+          "topWidth": 1,
+          "baseLength": "5%",
+          "rearLength": "10%"
+        }
+      }
+    };
+
+    var series = [{
+      "type": "pie",
+      "name": "Risk",
+      "innerSize": "70%",
+      "data": [{
+        "y": 67.5,
+        "name": "",
+        "color": "#c5e3f0"
+      }, {
+        "y": 13.5,
+        "name": "",
+        "color": "#00b300"
+      }, {
+        "y": 9,
+        "name": "",
+        "color": "#037dae"
+      }]
+    }, {
+      "type": "gauge",
+      "name": "Success",
+      "data": [score],
+      "dial": {
+        "rearLength": 0
+      }
+    }];
+	
     var json = {};
     json.title = title;
     json.credits = credits;
     json.chart = chart;
+	json.pane = pane;
+	json.yAxis = yAxis;
+	json.plotOptions = plotOptions;
+	json.series = series;
 	return json;
 }
     
@@ -568,13 +655,14 @@ $('.progress-note-label:nth-child('+(nodeindex+1)+')').nextAll().addClass('hide'
 <script language="JavaScript">
 function refresh(index){
 storedRisk = index;
+$('#sr').val(storedRisk);
 if ($('#invYrs').val().length>0){investYears = $('#invYrs').val();}
 else{investYears = 3;}
 if ($('#invFir').val().length>1){investFirstTime = $('#invFir').val();}
 else{investFirstTime = 20000;}
 if ($('#invFol').val().length>1){investFollowing = $('#invFol').val();}
 else{investFollowing = 500;}
-
+score=120;
 $('#container2').highcharts(makeChart2(index));
 $('#container4').highcharts(makeChart4(index));
 $('#container3').highcharts(makeChart3(index));
