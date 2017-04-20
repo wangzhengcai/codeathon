@@ -4,12 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>General</title>
+    <title>Retirement</title>
     <link rel="stylesheet" type="text/css" href="../static/style/css/foundation.min.css">
-    <link rel="stylesheet" type="text/css" href="../static/style/css/codeathon.css">    
-  <link rel="stylesheet" type="text/css" href="../static/style/css/psstyle.css">
-	<script src="../static/js/lib/jquery.js"></script>
-  <script src="../static/js/lib/highcharts.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/style/css/codeathon.css">
+	<link rel="stylesheet" type="text/css" href="../static/style/css/psstyle.css">
+	<script src="../static/js/lib/jquery.min.js"></script>
+	<script src="../static/js/lib/highcharts.js"></script>
+	<script src="../static/js/lib/highcharts-more.js"></script>
   </head>
  <body>
 
@@ -61,9 +62,11 @@
           <div class="boxes">
             <div class="box">
               <div class="progress">
+                <!--div class="bar">
+                  <div class="bar__fill" style="width: 33%"></div>
+                </div-->
                 <div class="point">
                   <div class="bullet"></div>
-                  
                 </div>
                 <div class="point">
                   <div class="bullet"></div>
@@ -109,13 +112,22 @@
                 <label class="progress-note-label label hide">Aggressive Growth</label>
                 <label class="progress-note-label label hide">Most Aggressive</label>
               </div>
+			  
+			  
             </div>
           </div>
          
       </div> 
+		<div>
+			Suggested Risk Tolerance Is Level 4
+			<br/>
+			Please select above if you want to change it to level (smaller level is safer but less profit)
+			<input id='sr' type="text"></input>
+		</div>
      </div> 
     </div> 
    </div> 
+
 
   </section> 
   <!-- == -->
@@ -134,29 +146,18 @@
           <th>ONE-TIME DEPOSIT</th> 
          </tr> 
          <tr> 
-          <td><input type="text" name="" placeholder="3" /></td> 
-          <td><span class="dollar-sign ng-scope">$</span><input type="text" name="" placeholder="500" /></td> 
-          <td><input type="text" name="" placeholder="600" /></td> 
+          <td><input id='invYrs' type="text" name="" placeholder="3" onchange='refresh(storedRisk)'/></td> 
+          <td><span class="dollar-sign ng-scope">$</span><input id='invFol' type="text" name="" placeholder="500" onchange='refresh(storedRisk)'/></td> 
+          <td><span class="dollar-sign ng-scope">$</span><input id='invFir' type="text" name="" placeholder="20000" onchange='refresh(storedRisk)'/></td> 
          </tr> 
-        </thead> 
-        <tbody> 
-         <tr> 
-          <td>Recommended</td>
-          <td>Recommended</td>
-          <td>Recommended</td> 
-         </tr> 
-         <tr> 
-          <td><span class="recommended">3 years</span></td> 
-          <td><span class="recommended">$358.75</span></td> 
-          <td><span class="recommended">$600</span></td> 
-         </tr> 
-        </tbody> 
+        </thead>       
        </table> 
       </div> 
      </div>      
     </div>
   </section>
-  <div class="dotted"></div>
+<section class="sec-space cart-area cart-area1">
+</section>
   <section class="sec-space cart-area cart-area1">
      <div class="area-chart">
       <div class="row"> 
@@ -321,15 +322,159 @@
   </section>
 
 <script language="JavaScript">
-//Pie Chart
-//add input here
-var investYears = 3;
-var investFirstTime = 30000;
-var investFollowing = 200;
+//3 inputs
+var investYears;
+var investFirstTime;
+var investFollowing;
+var storedRisk;
+var score;
+</script>
+
+
+<script language="JavaScript">
+function makeChart4(xxx) {
+	var centX = 200;
+	var centY = 150;
+	var val1 = 60;
+	var val2 = 80;
+	var val3 = 100;
+	
+	var title = {
+        text: score,
+        floating: true,
+        x:0,
+        y:centY-20,
+        style: {
+            color: 'black'
+        }
+    };
+    var credits = {enabled:false};
+    var chart = {
+		height: 400,
+		renderTo: "container",
+		plotBackgroundColor: null,
+		plotBackgroundImage: null,
+		plotBorderWidth: 0,
+		plotShadow: false,
+		backgroundColor: "transparent"
+    };
+	var pane = {
+      "center": ["50%", "47%"],
+      "size": "79%",
+      "startAngle": -90,
+      "endAngle": 90,
+      "background": {
+        "borderWidth": 0,
+        "backgroundColor": "transparent",
+        "innerRadius": "90%",
+        "outerRadius": "100%",
+        "shape": "arc"
+      }
+    };
+    var yAxis = [{
+      "lineWidth": 0,
+      "min": 0,
+      "max": 150,
+      "minorTickLength": 0,
+      "tickLength": 0,
+      "tickWidth": 0,
+      "labels": {
+        "enabled": false
+      },
+      "title": {
+        "text": score,
+        "useHTML": false,
+        "y": 80
+      },
+      "pane": 0
+    }];
+    var plotOptions = {
+      "series": {
+        "enableMouseTracking": false
+      },
+      "pie": {
+        "dataLabels": {
+          "enabled": true,
+          "distance": 0,
+          "style": {
+            "fontWeight": "bold",
+            "color": "white",
+            "textShadow": "0px 1px 2px black"
+          }
+        },
+        "startAngle": -90,
+        "endAngle": 90,
+        "center": ["50%", "47%"]
+      },
+      gauge: {
+        dataLabels: {
+          enabled: false
+        },
+        pivot: {
+          "radius": 125,
+          "borderWidth": 1,
+          "borderColor": "transparent",
+          "backgroundColor": "white"
+        },
+        dial: {
+          "radius": "97%",
+          "backgroundColor": "white",
+          "borderColor": "white",
+          "baseWidth": 140,
+          "topWidth": 1,
+          "baseLength": "5%",
+          "rearLength": "10%"
+        }
+      }
+    };
+
+    var series = [{
+      "type": "pie",
+      "name": "Risk",
+      "innerSize": "70%",
+      "data": [{
+        "y": 67.5,
+        "name": "",
+        "color": "#c5e3f0"
+      }, {
+        "y": 13.5,
+        "name": "",
+        "color": "#00b300"
+      }, {
+        "y": 9,
+        "name": "",
+        "color": "#037dae"
+      }]
+    }, {
+      "type": "gauge",
+      "name": "Success",
+      "data": [score],
+      "dial": {
+        "rearLength": 0
+      }
+    }];
+	
+    var json = {};
+    json.title = title;
+    json.credits = credits;
+    json.chart = chart;
+	json.pane = pane;
+	json.yAxis = yAxis;
+	json.plotOptions = plotOptions;
+	json.series = series;
+	return json;
+}
+    
+
+</script>
+
+<script language="JavaScript">
+//Area chart
+
 
 //2 var relative to other input
-var rateGood = 0.12;
-var rateWeak = 0.04;
+var rateGood = [[0.3],[0.27],[0.24],[0.21],[0.18],[0.15],[0.12],[0.09],[0.06]];
+var rateWeak = [[0.27],[0.24],[0.21],[0.18],[0.15],[0.12],[0.09],[0.06],[0.03]];
 
 function getYrMn(yrs){
 	yrmn = [];
@@ -351,19 +496,18 @@ function getYrMn(yrs){
 
 function getValue(rate, mn, inFir, inFol){
 	rt = rate / 12;
-	return Math.pow((1+rt), mn) * ( inFir + mn * inFol );
+	return Math.pow((1+rt), mn)*(inFir*1 + mn*inFol);
 }
 
 function getForecastArray(rate, yrs, inFir, inFol){
 	val =[];
 	for (i=0;i<=yrs*12;i++){
 		val.push(getValue(rate, i, inFir, inFol));
-
 	}
 	return val;
 }
 
-function makeChart_area() {  
+function makeChart3(x) {  
 	var chart = {type: 'area'};
 	var title = {text: 'title'};
 	var xAxis = {categories: getYrMn(investYears)};
@@ -390,10 +534,10 @@ function makeChart_area() {
 	var credits = {enabled:false};
 	var series= [{
 			name: 'Good Market',
-			data: getForecastArray(rateGood, investYears, investFirstTime, investFollowing)
+			data: getForecastArray(rateGood[x], investYears, investFirstTime, investFollowing)
 		}, {
 			name: 'Week Market',
-			data: getForecastArray(rateWeak, investYears, investFirstTime, investFollowing)
+			data: getForecastArray(rateWeak[x], investYears, investFirstTime, investFollowing)
 		}
 	];     
 
@@ -409,20 +553,18 @@ function makeChart_area() {
 	return json;
 }
 
-$(document).ready($('#container3').highcharts(makeChart_area()));
 
 
 </script>
 
 <script language="JavaScript">
-//Pie Chart
-//add input here
 var selectedRisk = 5;
 
+//Pie Chart
 var data_key = ['Stocks','Bonds','Short-Term'];
 var data_val = [[0,0,100],[20,50,30],[30,50,20],[40,45,15],[50,40,10],[60,35,5],[70,25,5],[85,15,0],[100,0,0]];
 
-function makeChart(x) {  
+function makeChart2(x) {  
 		var chart = {
 			margin : [0,0,0],
 			plotBackgroundColor: null,
@@ -447,6 +589,7 @@ function makeChart(x) {
 				showInLegend: true
 			}
 		};
+		
 		var legend = {
 			layout : 'vertical',
 			align : 'right',
@@ -476,18 +619,33 @@ function makeChart(x) {
 		return json;
 	}
 
-$(document).ready($('#container2').highcharts(makeChart(selectedRisk)));
-
 $(document).ready(function(){
 //made the selected progress bar checked
 var nodeindex = selectedRisk;
 $('.point:nth-child('+nodeindex+')').click();
-$('.progress-note-label:nth-child('+nodeindex+')').removeClass('hide');
-$('.progress-note-label:nth-child('+nodeindex+')').prevAll().addClass('hide');
-$('.progress-note-label:nth-child('+nodeindex+')').nextAll().addClass('hide');
+$('.progress-note-label:nth-child('+(nodeindex+1)+')').removeClass('hide');
+$('.progress-note-label:nth-child('+(nodeindex+1)+')').prevAll().addClass('hide');
+$('.progress-note-label:nth-child('+(nodeindex+1)+')').nextAll().addClass('hide');
 }
 );
 </script>
+<script language="JavaScript">
+function refresh(index){
+storedRisk = index;
+$('#sr').val(storedRisk);
+if ($('#invYrs').val().length>0){investYears = $('#invYrs').val();}
+else{investYears = 3;}
+if ($('#invFir').val().length>1){investFirstTime = $('#invFir').val();}
+else{investFirstTime = 20000;}
+if ($('#invFol').val().length>1){investFollowing = $('#invFol').val();}
+else{investFollowing = 500;}
+score=120;
+$('#container2').highcharts(makeChart2(index));
+$('#container3').highcharts(makeChart3(index));
+}
+
+</script>
+
 
   <!-- == -->
    <!-- footer-->
@@ -496,12 +654,9 @@ $('.progress-note-label:nth-child('+nodeindex+')').nextAll().addClass('hide');
   </footer>
   <!-- == -->
 <!-- Section js code -->
-<script src="../static/js/lib/jquery.js" type="text/javascript" ></script>
 <script src="../static/js/lib/foundation.min.js" type="text/javascript" ></script>
 <script src="../static/js/app/app.js" type="text/javascript" ></script>
-
 <script src='../static/js/lib/TweenMax.min.js'></script>
 <script src="../static/js/lib/index.js"></script>
-
  </body>
 </html>
