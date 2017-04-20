@@ -7,8 +7,11 @@
           transform: translate(-50%, -50%);
 }
 .boxes {
-  width: 100%;
-  height: 80px;}
+    width: 100%;
+    height: 80px;
+    padding-left: 100px;
+    padding-right: 120px;
+}
 .box {
   position: relative;
   display: -webkit-box;
@@ -29,8 +32,9 @@
   position: absolute;
 }
 .box:nth-child(1) {
-  left: 3%;
-  width: 94%;
+left: 110px;
+    width: 76%;
+    right: 100px;
 }
 .box:nth-child(2) {
   left: 2%;
@@ -52,17 +56,17 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 100%;
-    height: 3px;
-    margin-bottom: 3rem;
+    /* height: 3px;
+ */    margin-bottom: 3rem;
     border-radius: 0;
-    background-color: #999;
+    background-color: transparent;
 }
 
 .bar {
   position: absolute;
   top: 50%;
   left: 50%;
-  background: #E8DFD8;
+  background: #ccc;
   width: 100%;
   height: 3px;
   border-radius: 10px;
@@ -72,7 +76,7 @@
 }
 .bar__fill {
   display: block;
-  background: #BD8044;
+  background: #ccc;
   height: 100%;
 }
 
@@ -104,7 +108,7 @@
 .bullet {
   z-index: 1;
   position: relative;
-  background: #5fafaf;
+  background: #ccc;
   width: 15px;
   height: 15px;
   border-radius: 100%;
@@ -113,10 +117,10 @@
 }
 .point--complete .bullet, .point--active .bullet {
   background: #FFFFFF;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 6px #BD8044;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 6px #5fafaf;
 }
 .point--active .bullet {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 10px #BD8044;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 10px #5fafaf;
 }
 
 
@@ -137,18 +141,44 @@
 }
 .progress-note{
       position: absolute;
-    left: 50%;
-    top: 50px;
-    margin-left: -90px;
-    width: 180px;
+    left: 0;
+    top: 80px;
+    width: 100%;
 }
 .progress-note .label {
-    width: 180px;
-    text-align: center;
+    width: 100%;
+    text-align: left;
 }
 .point.start{
-  color: #b22029;
+  color: #5fafaf;
 }
 .point.start .bullet{
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 0 0 10px #b22029;
+box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 0 0 5px #5fafaf;
+    /* width: 30px; */
+    /* height: 30px; */
+    background: #fff;
+}
+.chart-area .area-chart{
+  padding-top: 0;
+}
+
+[type=color]:focus, [type=date]:focus, [type=datetime-local]:focus, [type=datetime]:focus, [type=email]:focus, [type=month]:focus, [type=number]:focus, [type=password]:focus, [type=search]:focus, [type=tel]:focus, [type=text]:focus, [type=time]:focus, [type=url]:focus, [type=week]:focus, textarea:focus{
+      border: none;
+    box-shadow: none;
+    border-bottom: 1px solid #244a67;
+    background-color: transparent;
+}
+.progress-con{
+  float: left;
+  width: 100px;
+  display: inline-block;
+}
+
+.progress-agg {
+    float: right;
+    width: 100px;
+    display: inline-block;
+    position: absolute;
+    right: 50px;
+    top: 0;
 }
