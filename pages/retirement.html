@@ -358,18 +358,13 @@ var score;
 function makeChart4(xxx) {
 	var centX = 200;
 	var centY = 150;
-	var val1 = 60;
-	var val2 = 80;
-	var val3 = 100;
 	
 	var title = {
         text: score,
         floating: true,
         x:0,
         y:centY-20,
-        style: {
-            color: 'black'
-        }
+        style: {color: 'black'}
     };
     var credits = {enabled:false};
     var chart = {
@@ -382,99 +377,96 @@ function makeChart4(xxx) {
 		backgroundColor: "transparent"
     };
 	var pane = {
-      "center": ["50%", "47%"],
-      "size": "79%",
-      "startAngle": -90,
-      "endAngle": 90,
-      "background": {
-        "borderWidth": 0,
-        "backgroundColor": "transparent",
-        "innerRadius": "90%",
-        "outerRadius": "100%",
-        "shape": "arc"
-      }
-    };
-    var yAxis = [{
-      "lineWidth": 0,
-      "min": 0,
-      "max": 150,
-      "minorTickLength": 0,
-      "tickLength": 0,
-      "tickWidth": 0,
-      "labels": {
-        "enabled": false
-      },
-      "title": {
-        "text": score,
-        "useHTML": false,
-        "y": 80
-      },
-      "pane": 0
-    }];
+		center: ["50%", "47%"],
+		size: "79%",
+		startAngle: -90,
+		endAngle: 90,
+		background: {
+			borderWidth: 0,
+			backgroundColor: "transparent",
+			innerRadius: "90%",
+			outerRadius: "100%",
+			shape: "arc"
+		}
+	};
+	var yAxis = [{
+		lineWidth: 0,
+		min: 0,
+		max: 150,
+		minorTickLength: 0,
+		tickLength: 0,
+		tickWidth: 0,
+		labels: {
+			enabled: false
+		},
+		title: {
+			text: score,
+			useHTML: false,
+			y: 80
+		},
+		pane: 0
+	}];
     var plotOptions = {
-      "series": {
-        "enableMouseTracking": false
-      },
-      "pie": {
-        "dataLabels": {
-          "enabled": true,
-          "distance": 0,
-          "style": {
-            "fontWeight": "bold",
-            "color": "white",
-            "textShadow": "0px 1px 2px black"
-          }
-        },
-        "startAngle": -90,
-        "endAngle": 90,
-        "center": ["50%", "47%"]
-      },
-      gauge: {
-        dataLabels: {
-          enabled: false
-        },
-        pivot: {
-          "radius": 125,
-          "borderWidth": 1,
-          "borderColor": "transparent",
-          "backgroundColor": "white"
-        },
-        dial: {
-          "radius": "97%",
-          "backgroundColor": "white",
-          "borderColor": "white",
-          "baseWidth": 140,
-          "topWidth": 1,
-          "baseLength": "5%",
-          "rearLength": "10%"
-        }
-      }
-    };
-
-    var series = [{
-      "type": "pie",
-      "name": "Risk",
-      "innerSize": "70%",
-      "data": [{
-        "y": 67.5,
-        "name": "",
-        "color": "#c5e3f0"
-      }, {
-        "y": 13.5,
-        "name": "",
-        "color": "#00b300"
-      }, {
-        "y": 9,
-        "name": "",
-        "color": "#037dae"
-      }]
-    }, {
-      "type": "gauge",
-      "name": "Success",
-      "data": [score],
-      "dial": {
-        "rearLength": 0
-      }
+		series: {enableMouseTracking: false},
+		pie: {
+			dataLabels: {
+				enabled: true,
+				distance: 0,
+				style: {
+					fontWeight: "bold",
+					color: "white",
+					textShadow: "0px 1px 2px black"
+				}
+			},
+			startAngle: -90,
+			endAngle: 90,
+			center: ["50%", "47%"]
+		},
+		gauge: {
+			dataLabels: {enabled: false},
+			pivot: {
+				radius: 125,
+				borderWidth: 1,
+				borderColor: "transparent",
+				backgroundColor: "white"
+			},
+			dial: {
+				radius: "97%",
+				backgroundColor: "white",
+				borderColor: "white",
+				baseWidth: 140,
+				topWidth: 1,
+				baseLength: "5%",
+				rearLength: "10%"
+			}
+		}
+	};
+	var series = [{
+			"type": "pie",
+			"name": "Risk",
+			"innerSize": "70%",
+			"data": [{
+			"y": 60,
+			"name": "",
+			"color": "darkred"
+		}, {
+			"y": 20,
+			"name": "",
+			"color": "orangered"
+		}, {
+			"y": 20,
+			"name": "",
+			"color": "orange"
+		},{
+			"y": 50,
+			"name": "",
+			"color": "green"
+		}]
+	}, {
+		"type": "gauge",
+		"name": "Success",
+		"data": [score],
+		"dial": {"rearLength": 0}
     }];
 	
     var json = {};
@@ -487,8 +479,6 @@ function makeChart4(xxx) {
 	json.series = series;
 	return json;
 }
-    
-
 </script>
 
 <script language="JavaScript">
