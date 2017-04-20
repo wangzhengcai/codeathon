@@ -1,0 +1,169 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" type="text/css" href="../static/style/css/foundation.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/style/css/codeathon.css">
+    <script src="../static/js/lib/jquery.js"></script>
+</head>
+
+<body>
+    <header class="marketing-hero sites-large-hero">
+        <!-- top nav -->
+        <nav class="marketing-topbar">
+            <div class="row">
+                <div class="medium-12 medium-centered columns">
+                    <a href="#" class="logo">&nbsp;</a>
+                    <a href="#" class="back-top"><strong>Top</strong></a>
+                </div>
+            </div>
+        </nav>
+        <!-- = -->
+        <!-- hero banner -->
+        <div class="hero-area">
+            <div class="row">
+                <div class="medium-8 medium-centered columns">
+                    <div class="hero-header">
+                        <h2 class="hero-main-header">Welcome OnePiece for Web Sites</h2>
+                        <p class="hero-subheader">We've made investing simple and convenient.We build and manage the strategies.Saving time doesn't have to cost a lot.See how easy we've made investing</p>
+                        <p class="hero-subheader">It takes just a few minutes. Answer one questions and we'll suggest an investment strategy for you.</p>
+                        <a href="#plan" name="#plan" class="button show-for-small-only"> Get plan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- = -->
+    </header>
+    <!-- section form-section -->
+    <section class="sec-space form-area" id="plan">
+        <div class="row">
+            <div class="medium-10 medium-centered columns">
+                <div class="form top-inputs text-center">
+                    <h4 class="form-title">Let's get started</h4>
+                    <div class="sentence">
+                    <!--I have saved ?? for retirement so far, and will save ?? each month for retirement. -->
+                        <span class="edit-age">I have saved &yen;<input name="money_init" class="enter-income border" type="tel" maxlength="10" placeholder="" onkeydown="onlyNum();" onkeyup="this.value = this.value.replace(/[^\d]/g,'').replace(/\d+?(?=(?:\d{3})+$)/g, function(s){  
+                                        return s +',';  
+                                    });"  style="ime-mode:Disabled"> for retirement so far, </span>
+                        <span class="edit-income">and will save <span class="nowrap">&yen;<input name="money_month" class="enter-income border" type="tel" maxlength="10" placeholder="" onkeydown="onlyNum();" onkeyup="this.value = this.value.replace(/[^\d]/g,'').replace(/\d+?(?=(?:\d{3})+$)/g, function(s){  
+                                        return s +',';  
+                                    });"  style="ime-mode:Disabled"> each month for retirement.</span> <span class="madlib-error"></span></span>                                    
+                    </div>
+                    <a class="button button-orange-next" href="retirement.html" a href="javascript:void(0);" onclick="storeInfo()">Continue</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- == -->
+    <hr class="dotted" />
+    <!-- section video-section -->
+    <section class="sec-space video-area">
+        <div class="row text-center">
+            <h3>"Change better from FIL"</h3>
+            <div class="medium-8 medium-centered columns">
+                <div class="v-position">
+                    <div class="video-container">
+                        <div class="" id="qumu">
+                            <div class="layout-16x9-main">
+                                <div class="mod-video">
+                                    <a class="mod-video-play-button"> <img class="video-play-icon" src="../static/style/images/play_btn.png" /> </a>
+                                    <img alt="" class="mod-video-image" src="../static/style/images/card-thumb.jpg" />
+                                </div>
+                            </div>
+                        </div>
+                        <div id="qumu-video"></div>
+                        <script src="https://video.fidelity.tv/widgets/1/application.js"></script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- == -->
+    <!-- section need-section -->
+    <hr class="dotted" />
+    <section class="sec-space need-area">
+        <div class="row">
+            <div class="medium-10 medium-centered columns">
+
+                <div class="need-content text-center">
+                    <h2>Need help ?</h2>
+                    <div class="need box row">
+                        <!-- ngIf: showFAQ -->
+                        <div class="medium-4 column need-item item-faq ng-scope" ng-if="showFAQ">
+                            <div class="fgo-icon-faq contact-us-icon">&nbsp;</div>
+                            <div class="contact-us-text"> <a class="ng-isolate-scope" href="#">FAQs</a> <p>&nbsp;</p></div>
+                        </div>
+                        <!-- end ngIf: showFAQ -->
+                        <div class="medium-4 column need-item"> 
+                            <div class="fgo-icon-chat-unavailable contact-us-icon ">&nbsp;</div>
+                            <div class="contact-us-text contact-us-icon"> 
+                                <a href="javascript:void(0)" class="ng-binding">Live Chat</a>
+                                <p class="ng-binding">8 a.m. to 8 p.m. ET,</p>
+                            </div>
+                        </div>
+                        <div class="medium-4 column need-item">
+                            <div class="fgo-icon-phone contact-us-icon">&nbsp;</div>
+                            <div class="contact-us-text"> <a class="ng-isolate-scope" href="tel:+03-4560-6010">Phone Support</a>
+                                <p class="ng-binding">03-4560-6010</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- footer-->
+    <footer class="footer-area text-center">
+        <div class="row">
+            <div class="columns">
+                <div class="primary-footer">
+                    <a href="" target="_top" title="Fidelity Logo" class="footer-logo"><img class="fid-logo" src="../static/style/images/logo_en_white.png" alt="Fidelity"></a>
+                    <div class="copyright">
+                        <p class="">© 2017 FIL.</p>
+                        <p class="rights">All rights reserved.</p>                
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- == -->
+    <!-- Section js code -->
+    <!-- <script src="../static/js/lib/jquery.js" type="text/javascript" ></script> -->
+    <script src="../static/js/lib/foundation.min.js" type="text/javascript"></script>
+    <script src="../static/js/app/app.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    //get data info
+   //get data info
+    $(document).ready(function() {
+        var age = localStorage.getItem('age');
+        var money = localStorage.getItem('money');
+        var money_init = localStorage.getItem('money_init');
+        var money_month = localStorage.getItem('money_month');
+        console.log("age:" + age);
+        console.log("money:" + money);
+        console.log("money_init:" + money_init);
+        console.log("money_month:" + money_month);
+    });
+    function onlyNum() {
+        if (!(event.keyCode == 46) && !(event.keyCode == 8) && !(event.keyCode == 37) && !(event.keyCode == 39))
+            if (!((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)))
+                event.returnValue = false;
+    }
+
+    function storeInfo() {
+        var money_init = $("input[name='money_init']").val();
+        var money_month = $("input[name='money_month']").val();
+        //localStorage.setItem('age', age_i);
+        //localStorage.setItem('money', money_i);
+        localStorage.setItem('money_init', money_init);
+        localStorage.setItem('money_month', money_month);
+    }
+    </script>
+</body>
+
+</html>
