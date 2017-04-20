@@ -17,7 +17,7 @@
 <script type="text/javascript">
    $(document).ready(function(){
 //made the selected progress bar checked
-var nodeindex = selectedRisk;
+var nodeindex = 7;
 $('.point:nth-child('+nodeindex+')').click();
 $('.progress-note-label:nth-child('+(nodeindex+1)+')').removeClass('hide');
 $('.progress-note-label:nth-child('+(nodeindex+1)+')').prevAll().addClass('hide');
@@ -72,7 +72,7 @@ function onlyNum() {
          <div class="medium-12 medium-centered columns">
             <div class="hero-area retail-hero">
 
-                <div class="hero-headere>
+                <div class="hero-header">
                     <h1 class="hero-main-header">Safety net</h1>
                     <p class="hero-subheader">You know the worst thing about a slave? They make you work, but they don't pay you or let you go. She also liked to shut up! Bender! Stop bickering or I'm going to come back there and change your opinions manually!</p>
                     <a href="#plan" name="#plan" class="button show-for-small-only"> Get plan</a>
@@ -103,7 +103,13 @@ function onlyNum() {
                                 <div class="bar">
                                     <div class="bar__fill" style="width: 33%"></div>
                                 </div>
-                                <div class="point point--complete">
+                                <div class="point">
+                                    <div class="bullet"></div>
+                                </div>
+                                <div class="point">
+                                    <div class="bullet"></div>
+                                </div>
+                                <div class="point">
                                     <div class="bullet"></div>
                                 </div>
                                 <div class="point">
@@ -113,12 +119,6 @@ function onlyNum() {
                                     <div class="bullet"></div>
                                 </div>
                                 <div class="point start">
-                                    <div class="bullet"></div>
-                                </div>
-                                <div class="point">
-                                    <div class="bullet"></div>
-                                </div>
-                                <div class="point">
                                     <div class="bullet"></div>
                                 </div>
                                 <div class="point">
@@ -155,13 +155,13 @@ function onlyNum() {
           <th>ONE-TIME DEPOSIT</th> 
          </tr> 
          <tr> 
-          <td><input id='invYrs' type="text" name="" placeholder="e.g. 3" onchange='refresh(storedRisk)' maxlength="3" onkeydown="onlyNum();" onkeyup="this.value = this.value.replace(/[^\d]/g,'').replace(/\d+?(?=(?:\d{3})+$)/g, function(s){  
+          <td><input id='invYrs' type="text" name="" placeholder="e.g. 3" onblur='refresh(storedRisk)' maxlength="3" onkeydown="onlyNum();" onkeyup="this.value = this.value.replace(/[^\d]/g,'').replace(/\d+?(?=(?:\d{3})+$)/g, function(s){  
                                         return s +',';  
                                     });"  style="ime-mode:Disabled" /></td> 
-          <td><span class="dollar-sign ng-scope">&yen;</span><input id='invFol' type="text" name="" placeholder="e.g. 500"  maxlength="10" onchange='refresh(storedRisk)' onkeydown="onlyNum();" onkeyup="this.value = this.value.replace(/[^\d]/g,'').replace(/\d+?(?=(?:\d{3})+$)/g, function(s){  
+          <td><span class="dollar-sign ng-scope">&yen;</span><input id='invFol' type="text" name="" placeholder="e.g. 500"  maxlength="10" onblur='refresh(storedRisk)' onkeydown="onlyNum();" onkeyup="this.value = this.value.replace(/[^\d]/g,'').replace(/\d+?(?=(?:\d{3})+$)/g, function(s){  
                                         return s +',';  
                                     });"  style="ime-mode:Disabled" /></td> 
-          <td><span class="dollar-sign ng-scope">&yen;</span><input id='invFir' type="text" name="" placeholder="e.g. 20000" onchange='refresh(storedRisk)'   maxlength="10" onkeydown="onlyNum();" onkeyup="this.value = this.value.replace(/[^\d]/g,'').replace(/\d+?(?=(?:\d{3})+$)/g, function(s){  
+          <td><span class="dollar-sign ng-scope">&yen;</span><input id='invFir' type="text" name="" placeholder="e.g. 20000" onblur='refresh(storedRisk)'   maxlength="10" onkeydown="onlyNum();" onkeyup="this.value = this.value.replace(/[^\d]/g,'').replace(/\d+?(?=(?:\d{3})+$)/g, function(s){  
                                         return s +',';  
                                     });"  style="ime-mode:Disabled" /></td> 
          </tr> 
@@ -646,7 +646,7 @@ function makeChart2(x) {
 
 $(document).ready(function(){
 //made the selected progress bar checked
-var nodeindex = selectedRisk;
+var nodeindex = 7;
 $('.point:nth-child('+nodeindex+')').click();
 $('.progress-note-label:nth-child('+(nodeindex+1)+')').removeClass('hide');
 $('.progress-note-label:nth-child('+(nodeindex+1)+')').prevAll().addClass('hide');
