@@ -53,6 +53,8 @@ $('.point').on('click', function(e) {
 	$('.progress-note-label:nth-child('+(getIndex+1)+')').removeClass('hide');
 	$('.progress-note-label:nth-child('+(getIndex+1)+')').prevAll().addClass('hide');
 	$('.progress-note-label:nth-child('+(getIndex+1)+')').nextAll().addClass('hide');
+	//alert((getIndex))
+	refresh(getIndex)
 });
 
 
