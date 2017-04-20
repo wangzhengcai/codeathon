@@ -48,13 +48,12 @@ $('.point').on('click', function(e) {
     $(this).addClass('point--active');
     $(this).prevAll().removeClass('point--complete').removeClass('point--active');
     $(this).nextAll().removeClass('point--complete').removeClass('point--active');
-	$('#sr').val(getIndex);
 	//change progress bar label
 	$('.progress-note-label:nth-child('+(getIndex+1)+')').removeClass('hide');
 	$('.progress-note-label:nth-child('+(getIndex+1)+')').prevAll().addClass('hide');
 	$('.progress-note-label:nth-child('+(getIndex+1)+')').nextAll().addClass('hide');
 	//alert((getIndex))
-	refresh(getIndex)
+	refresh(getIndex);
 });
 
 

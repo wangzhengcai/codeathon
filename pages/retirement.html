@@ -121,7 +121,7 @@
 			Suggested Risk Tolerance Is Level 4
 			<br/>
 			Please select above if you want to change it to level (smaller level is safer but less profit)
-			<input id='sr' type="text" onchange='resetData()'></input>
+			<input id='sr' type="text"></input>
 		</div>
      </div> 
     </div> 
@@ -145,9 +145,9 @@
           <th>ONE-TIME DEPOSIT</th> 
          </tr> 
          <tr> 
-          <td><input type="text" name="" placeholder="3" /></td> 
-          <td><span class="dollar-sign ng-scope">$</span><input type="text" name="" placeholder="500" /></td> 
-          <td><input type="text" name="" placeholder="600" /></td> 
+          <td><input id='invYrs' type="text" name="" placeholder="3" onchange='refresh(storedRisk)'/></td> 
+          <td><span class="dollar-sign ng-scope">$</span><input id='invFol' type="text" name="" placeholder="500" onchange='refresh(storedRisk)'/></td> 
+          <td><span class="dollar-sign ng-scope">$</span><input id='invFir' type="text" name="" placeholder="20000" onchange='refresh(storedRisk)'/></td> 
          </tr> 
         </thead> 
         <tbody> 
@@ -158,8 +158,8 @@
          </tr> 
          <tr> 
           <td><span class="recommended">3 years</span></td> 
-          <td><span class="recommended">$358.75</span></td> 
-          <td><span class="recommended">$600</span></td> 
+          <td><span class="recommended">$500</span></td> 
+          <td><span class="recommended">$20000</span></td> 
          </tr> 
         </tbody> 
         <tfoot> 
@@ -344,11 +344,11 @@
   </section>
 
 <script language="JavaScript">
-function resetData(){
-	var sr = $('#sr').val();
-	
-
-}
+//3 inputs
+var investYears ;
+var investFirstTime ;
+var investFollowing ;
+var storedRisk;
 </script>
 
 
@@ -406,14 +406,11 @@ function makeChart4() {
 
 <script language="JavaScript">
 //Area chart
-//3 inputs
-var investYears = 3;
-var investFirstTime = 30000;
-var investFollowing = 200;
+
 
 //2 var relative to other input
-var rateGood = 0.12;
-var rateWeak = 0.04;
+var rateGood = [[0.3],[0.27],[0.24],[0.21],[0.18],[0.15],[0.12],[0.09],[0.06]];
+var rateWeak = [[0.27],[0.24],[0.21],[0.18],[0.15],[0.12],[0.09],[0.06],[0.03]];
 
 function getYrMn(yrs){
 	yrmn = [];
@@ -435,19 +432,18 @@ function getYrMn(yrs){
 
 function getValue(rate, mn, inFir, inFol){
 	rt = rate / 12;
-	return Math.pow((1+rt), mn) * ( inFir + mn * inFol );
+	return Math.pow((1+rt), mn)*(inFir*1 + mn*inFol);
 }
 
 function getForecastArray(rate, yrs, inFir, inFol){
 	val =[];
 	for (i=0;i<=yrs*12;i++){
 		val.push(getValue(rate, i, inFir, inFol));
-
 	}
 	return val;
 }
 
-function makeChart_area() {  
+function makeChart3(x) {  
 	var chart = {type: 'area'};
 	var title = {text: 'title'};
 	var xAxis = {categories: getYrMn(investYears)};
@@ -474,10 +470,10 @@ function makeChart_area() {
 	var credits = {enabled:false};
 	var series= [{
 			name: 'Good Market',
-			data: getForecastArray(rateGood, investYears, investFirstTime, investFollowing)
+			data: getForecastArray(rateGood[x], investYears, investFirstTime, investFollowing)
 		}, {
 			name: 'Week Market',
-			data: getForecastArray(rateWeak, investYears, investFirstTime, investFollowing)
+			data: getForecastArray(rateWeak[x], investYears, investFirstTime, investFollowing)
 		}
 	];     
 
@@ -498,14 +494,13 @@ function makeChart_area() {
 </script>
 
 <script language="JavaScript">
-//Pie Chart
-//add input here
 var selectedRisk = 5;
 
+//Pie Chart
 var data_key = ['Stocks','Bonds','Short-Term'];
 var data_val = [[0,0,100],[20,50,30],[30,50,20],[40,45,15],[50,40,10],[60,35,5],[70,25,5],[85,15,0],[100,0,0]];
 
-function makeChart(x) {  
+function makeChart2(x) {  
 		var chart = {
 			margin : [0,0,0],
 			plotBackgroundColor: null,
@@ -567,18 +562,22 @@ $('.point:nth-child('+nodeindex+')').click();
 $('.progress-note-label:nth-child('+(nodeindex+1)+')').removeClass('hide');
 $('.progress-note-label:nth-child('+(nodeindex+1)+')').prevAll().addClass('hide');
 $('.progress-note-label:nth-child('+(nodeindex+1)+')').nextAll().addClass('hide');
-//
 }
 );
 </script>
 <script language="JavaScript">
-$(document).ready($('#container4').highcharts(makeChart4()));
-$(document).ready($('#container3').highcharts(makeChart_area()));
-$(document).ready($('#container2').highcharts(makeChart(selectedRisk)));
-
-
 function refresh(index){
-$('#container2').highcharts(makeChart(index));
+storedRisk = index;
+if ($('#invYrs').val().length>0){investYears = $('#invYrs').val();}
+else{investYears = 3;}
+if ($('#invFir').val().length>1){investFirstTime = $('#invFir').val();}
+else{investFirstTime = 20000;}
+if ($('#invFol').val().length>1){investFollowing = $('#invFol').val();}
+else{investFollowing = 500;}
+
+$('#container2').highcharts(makeChart2(index));
+$('#container4').highcharts(makeChart4(index));
+$('#container3').highcharts(makeChart3(index));
 }
 
 </script>
