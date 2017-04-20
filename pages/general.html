@@ -61,10 +61,7 @@
           <div class="boxes">
             <div class="box">
               <div class="progress">
-                <div class="bar">
-                  <div class="bar__fill" style="width: 33%"></div>
-                </div>
-                <div class="point point--complete">
+                <div class="point">
                   <div class="bullet"></div>
                   
                 </div>
@@ -76,7 +73,7 @@
                   <div class="bullet"></div>
 
                 </div>
-                 <div class="point start">
+                 <div class="point">
                   <div class="bullet"></div>
 
                 </div>
@@ -102,15 +99,15 @@
                 </div>
               </div>
               <div class="progress-note">
-                <label class="label hide">SelectShort-Term</label>
-                <label class="label hide">Conservative</label>
-                <label class="label hide">Moderate with Income</label>
-                <label class="label ">Moderate</label>
-                <label class="label hide">Balanced</label>
-                <label class="label hide">Growth with Income</label>
-                <label class="label hide">Growth</label>
-                <label class="label hide">Aggressive Growth</label>
-                <label class="label hide">Most Aggressive</label>
+                <label class="progress-note-label label hide">SelectShort-Term</label>
+                <label class="progress-note-label label hide">Conservative</label>
+                <label class="progress-note-label label hide">Moderate with Income</label>
+                <label class="progress-note-label label ">Moderate</label>
+                <label class="progress-note-label label hide">Balanced</label>
+                <label class="progress-note-label label hide">Growth with Income</label>
+                <label class="progress-note-label label hide">Growth</label>
+                <label class="progress-note-label label hide">Aggressive Growth</label>
+                <label class="progress-note-label label hide">Most Aggressive</label>
               </div>
             </div>
           </div>
@@ -324,8 +321,8 @@
   </section>
 
 <script language="JavaScript">
-//Area chart
-//3 inputs
+//Pie Chart
+//add input here
 var investYears = 3;
 var investFirstTime = 30000;
 var investFollowing = 200;
@@ -414,6 +411,7 @@ function makeChart_area() {
 
 $(document).ready($('#container3').highcharts(makeChart_area()));
 
+
 </script>
 
 <script language="JavaScript">
@@ -480,7 +478,15 @@ function makeChart(x) {
 
 $(document).ready($('#container2').highcharts(makeChart(selectedRisk)));
 
-
+$(document).ready(function(){
+//made the selected progress bar checked
+var nodeindex = selectedRisk;
+$('.point:nth-child('+nodeindex+')').click();
+$('.progress-note-label:nth-child('+nodeindex+')').removeClass('hide');
+$('.progress-note-label:nth-child('+nodeindex+')').prevAll().addClass('hide');
+$('.progress-note-label:nth-child('+nodeindex+')').nextAll().addClass('hide');
+}
+);
 </script>
 
   <!-- == -->
