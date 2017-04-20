@@ -530,6 +530,7 @@ function makeChart(x) {
 				showInLegend: true
 			}
 		};
+		
 		var legend = {
 			layout : 'vertical',
 			align : 'right',
@@ -574,6 +575,12 @@ $('.progress-note-label:nth-child('+(nodeindex+1)+')').nextAll().addClass('hide'
 $(document).ready($('#container4').highcharts(makeChart4()));
 $(document).ready($('#container3').highcharts(makeChart_area()));
 $(document).ready($('#container2').highcharts(makeChart(selectedRisk)));
+
+
+function refresh(index){
+$('#container2').highcharts(makeChart(index));
+}
+
 </script>
 
 
@@ -584,7 +591,6 @@ $(document).ready($('#container2').highcharts(makeChart(selectedRisk)));
   </footer>
   <!-- == -->
 <!-- Section js code -->
-<script src="../static/js/lib/jquery.js" type="text/javascript" ></script>
 <script src="../static/js/lib/foundation.min.js" type="text/javascript" ></script>
 <script src="../static/js/app/app.js" type="text/javascript" ></script>
 <script src='../static/js/lib/TweenMax.min.js'></script>
