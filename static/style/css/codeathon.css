@@ -639,7 +639,7 @@ fill: rgba(52, 73, 94, 0.2);
 }
 
 .button-orange-next {
-	background-color: #f26522;
+	background-color: #d15f27;
 	color: #fff;
 	padding: 8px 50px;
 	text-align: center;
@@ -650,13 +650,13 @@ fill: rgba(52, 73, 94, 0.2);
 	display: inline-block;
 	vertical-align: middle;
 	text-decoration: none!important;
-	border:1px solid #f26522;
+	border:1px solid #d15f27;
 	border-radius: 3px;
 
 }
 .button-white{
-	background-color: #244a67;
-	color: #fefefe;
+	background-color: #244A67;
+	color: #fff;
 	padding: 8px 50px;
 	text-align: center;
 	font-weight: 500;
@@ -671,13 +671,15 @@ fill: rgba(52, 73, 94, 0.2);
 }
 .button-orange-next:hover,
 .button-orange-next:focus{
-	background-color: #f26522;
+	background-color: #92421b;
+	border:1px solid #92421b;
+
 	color: #fff;	
 }
 .button-white:hover,
 .button-white:focus{
-	background-color: #244a67;
-	color: #fff;	
+	background-color: #fff;
+	color: #244a67;	
 }
 .goals .btn-orange{
 background-color: #f26522;
@@ -725,7 +727,7 @@ color: #fefefe
 }
 /*video*/
 .v-position {
-padding-top: 30px;
+padding-top: 10px;
 padding-bottom: 30px;
 }
 .v-col {
@@ -911,5 +913,52 @@ opacity: 1;
 	color: #fff;
 }
 
+/*card*/
+.goal-wrap{
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    /* align-items: flex-start; */
+    flex-wrap: wrap;
 
-
+}
+.goal-card{
+/* 	float: left;
+ */	width: 30%;
+	min-height: 300px;
+	border:1px solid #ccc;
+    padding: 15px 20px 0;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    -moz-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+a.goal-card:hover,
+a.goal-card:focus{
+    -webkit-box-shadow: 0 6px 6px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 6px rgba(0,0,0,0.15);
+}
+a.goal-card:nth-child(1):hover,
+a.goal-card:nth-child(1):focus{
+    box-shadow: 0 6px 6px rgba(95,175,175,0.15);
+    box-shadow: 0 6px 6px rgba(95,175,175,0.15);
+}
+a.goal-card:nth-child(1):hover,
+a.goal-card:nth-child(1):focus{
+    -webkit-box-shadow: 0 6px 6px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 6px rgba(0,0,0,0.15);
+}
+a.goal-card:nth-child(1):hover,
+a.goal-card:nth-child(1):focus{
+    -webkit-box-shadow: 0 6px 6px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 6px rgba(0,0,0,0.15);
+}
