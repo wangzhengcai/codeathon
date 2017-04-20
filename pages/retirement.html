@@ -111,13 +111,22 @@
                 <label class="progress-note-label label hide">Aggressive Growth</label>
                 <label class="progress-note-label label hide">Most Aggressive</label>
               </div>
+			  
+			  
             </div>
           </div>
          
       </div> 
+		<div>
+			Suggested Risk Tolerance Is Level 4
+			<br/>
+			Please select above if you want to change it to level (smaller level is safer but less profit)
+			<input id='sr' type="text" onchange='resetData()'></input>
+		</div>
      </div> 
     </div> 
    </div> 
+
 
   </section> 
   <!-- == -->
@@ -335,6 +344,15 @@
   </section>
 
 <script language="JavaScript">
+function resetData(){
+	var sr = $('#sr').val();
+	
+
+}
+</script>
+
+
+<script language="JavaScript">
 //cal by inut
 var score = 120;
 var centX = 200;
@@ -382,7 +400,7 @@ function makeChart4() {
     json.chart = chart;
 	return json;
 }
-    $(document).ready($('#container4').highcharts(makeChart4()));
+    
 
 </script>
 
@@ -475,7 +493,7 @@ function makeChart_area() {
 	return json;
 }
 
-$(document).ready($('#container3').highcharts(makeChart_area()));
+
 
 </script>
 
@@ -548,12 +566,16 @@ $('.point:nth-child('+nodeindex+')').click();
 $('.progress-note-label:nth-child('+(nodeindex+1)+')').removeClass('hide');
 $('.progress-note-label:nth-child('+(nodeindex+1)+')').prevAll().addClass('hide');
 $('.progress-note-label:nth-child('+(nodeindex+1)+')').nextAll().addClass('hide');
-//$('#container2').highcharts(makeChart(selectedRisk))
+//
 }
 );
-
-
 </script>
+<script language="JavaScript">
+$(document).ready($('#container4').highcharts(makeChart4()));
+$(document).ready($('#container3').highcharts(makeChart_area()));
+$(document).ready($('#container2').highcharts(makeChart(selectedRisk)));
+</script>
+
 
   <!-- == -->
    <!-- footer-->
